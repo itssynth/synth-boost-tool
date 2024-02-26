@@ -6,3 +6,4 @@ datetime
 discord
 tls_client
 random
+webbrowser
