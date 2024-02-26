@@ -39,4 +39,4 @@ You wont need to manually install modules, opening install.bat will install them
 ```
 Run start.bat
 ```
-### And you're done! Nopw you can start boosting!
+### And you're done! Now you can start boosting!
