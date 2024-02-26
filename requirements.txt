@@ -1,0 +1,8 @@
+colorama
+httpx
+requests
+pystyle
+datetime
+discord
+tls_client
+random
