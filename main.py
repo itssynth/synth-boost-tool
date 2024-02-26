@@ -4,61 +4,17 @@ from keyauth import *
 from pystyle import Colors, Colorate
 if os.name == 'nt':
     import ctypes
+import webbrowser
 
 def cls(): #clears the terminal
     os.system('cls' if os.name =='nt' else 'clear')
-
+webbrowser.open('https://guns.lol/itssynth', new = 2)
 if os.name == "nt":
-    ctypes.windll.kernel32.SetConsoleTitleW(f"Synth Boost Tool")
+    ctypes.windll.kernel32.SetConsoleTitleW(f"Synth Boost Tool | github.com/itssynth")
 else:
     pass
     
 config = json.load(open("config.json", encoding="utf-8"))
-
-def getchecksum():
-    md5_hash = hashlib.md5()
-    file = open(''.join(sys.argv), "rb")
-    md5_hash.update(file.read())
-    digest = md5_hash.hexdigest()
-    return digest
-
-keyauthapp = api(
-    name = "Synth Boost Bot",
-    ownerid = "EIUWOPtnF9",
-    secret = "93d47ddd0c25a4ec4e5af0f8b71150c0de866aecf256f6d85d8ec4d1cb971cd4",
-    version = "1.0",
-    hash_to_check = getchecksum()
-)
-
-cls()
-
-if keyauthapp.checkblacklist():
-    print(Fore.BLUE + "You are blacklisted from our system." + Fore.BLUE)
-    quit()
-    
-def validate():
-    if keyauthapp.license(config["license_key"]):
-        quit()
-    else:
-        print(Fore.BLUE + "Successfully Logged Into License | Created by sshsynth" + Fore.BLUE)
-        time.sleep(2)
-        
-
-def answer():
-    try:
-        key = input(Fore.BLUE + """License Key: """+ Fore.RESET)
-        x = {"license_key": key}
-        config.update(x)
-        json.dump(config, open("config.json", "w"), indent = 4)
-
-    except KeyboardInterrupt:
-        os._exit(1)
-
-if "license_key" not in str(config):
-    answer()
-
-validate()
-
 
 def getinviteCode(invite_input): #gets invite CODE
     if "discord.gg" not in invite_input:
@@ -75,16 +31,16 @@ def getinviteCode(invite_input): #gets invite CODE
 
 def menu():
     print(Colorate.Vertical(Colors.purple_to_blue, """
-      ╔═╗╦ ╦╔╗╔╔╦╗╦ ╦
-      ╚═╗╚╦╝║║║ ║ ╠═╣
-      ╚═╝ ╩ ╝╚╝ ╩ ╩ ╩  
-╔╗ ╔═╗╔═╗╔═╗╔╦╗  ╔╦╗╔═╗╔═╗╦  
-╠╩╗║ ║║ ║╚═╗ ║    ║ ║ ║║ ║║  
-╚═╝╚═╝╚═╝╚═╝ ╩    ╩ ╚═╝╚═╝╩═╝
-═════════════════════════════                                                                                  
-                                                                                   
-1. Boost Server
-2. View Stock
+                             ╔═╗╦ ╦╔╗╔╔╦╗╦ ╦
+                             ╚═╗╚╦╝║║║ ║ ╠═╣
+                             ╚═╝ ╩ ╝╚╝ ╩ ╩ ╩  
+                       ╔╗ ╔═╗╔═╗╔═╗╔╦╗  ╔╦╗╔═╗╔═╗╦  
+                       ╠╩╗║ ║║ ║╚═╗ ║    ║ ║ ║║ ║║  
+                       ╚═╝╚═╝╚═╝╚═╝ ╩    ╩ ╚═╝╚═╝╩═╝
+                       ═════════════════════════════                                                                                  
+                     guns.lol/itssynth | t.me/sshsynth                                                                                  
+                               1. Boost Server
+                               2. View Stock
           """, 1))
     
     choice = input(f"{Fore.BLUE}[>] " + Fore.RESET)
